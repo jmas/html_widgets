@@ -1,0 +1,69 @@
+(function() {
+
+	// If widgets.js not found
+	if (window.widgets === undefined) {
+		return;
+	}
+
+	var elements = [];
+
+	window.widgets.add('slider', function() {
+		elements.push(this);
+	});
+
+	var init = function() {
+		$(elements).each(function() {
+			var slidesWidth=0,
+			    element = $(this),
+			    currentSlide = null;
+
+			var animateToSlide = function(slide) {
+				element.find('[data-slides]').stop().animate({
+					marginLeft: - slide.position().left
+				}, 500);
+			};
+
+			element.find('[data-prev]').on('click', function() {
+				var slide = currentSlide.prev();
+				if (slide.length > 0) {
+					animateToSlide(slide);
+					currentSlide = slide;
+				}
+			});
+
+			element.find('[data-next]').on('click', function() {
+				var slide = currentSlide.next();
+
+				if (slide.length > 0 && slide.position().left + slide.width() < element.width()) {
+					animateToSlide(slide);
+					currentSlide = slide;
+				} else {
+					element.find('[data-slides]').stop().animate({
+						marginLeft: - slidesWidth + element.find('[data-viewport]').width()
+					}, 500);
+				}
+			});
+
+			element.find('[data-prev], [data-next]').css('display', 'block');
+
+			element.find('[data-slides]').find('li').each(function() {
+				slidesWidth += parseInt($(this).outerWidth());
+			});
+
+			element.find('[data-slides]').css('width', slidesWidth);
+
+			currentSlide = element.find('[data-slides]').find('li').first();
+
+			element.on('touchstart', function() {
+				console.log($(this));
+			});
+		});
+	};
+
+	if (typeof jQuery === 'undefined') {
+		window.widgets.utils.loadScript('http://code.jquery.com/jquery-1.9.1.min.js', init);
+	} else {
+		init();
+	}
+
+})();

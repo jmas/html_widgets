@@ -91,7 +91,7 @@
 		 */
 		var publicObject = {
 			widgetBaseUrl: 'widgets',
-			attributeName: 'data-ext',
+			attributeName: 'data-widget',
 		
 			add: function(name, obj) {
 				widgets[name] = obj;

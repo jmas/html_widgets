@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Test</title>
+		<title>Demos &mdash; Widget.js</title>
 
 		<style>
 			
@@ -13,6 +13,7 @@
 
 		<ul>
 			<li><a href="map.html">Map widget examples</a></li>
+			<li><a href="slider.html">Map widget examples</a></li>
 		</ul>
 
 	</body>

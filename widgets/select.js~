@@ -1,0 +1,14 @@
+(function() {
+
+	// If widgets.js not found
+	if (window.widgets === undefined) {
+		return;
+	}
+
+	window.widgets.add('select', function() {
+		elements.push(this);
+	});
+
+	
+
+})();
