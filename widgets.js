@@ -34,32 +34,60 @@
 		};
 
 
-		var utils = {
-			loadScript: function (libUrl, callback) {
-				var element = document.createElement('script');
-				element.src = libUrl;
-				element.rel = libUrl;
-				if (callback !== undefined) {
-					element.onload = callback;
-				}
-				document.getElementsByTagName('HEAD')[0].appendChild(element);
-			},
+		/**
+		 * Return public properties and methods of widget utils.
+		 */
+		var getUtils = function getUtils() {
+			var scripts = [],
+			    css = [];
 
-			loadCss: function (cssUrl, callback) {
-				var element = document.createElement('LINK');
-				element.rel = 'stylesheet';
-				element.type = 'text/css';
-				element.href = cssUrl; // + '?' + Math.random();
-				if (callback !== undefined) {
-					element.onload = callback;
+			return {
+				loadScript: function (url, callback) {
+					for (var i in scripts) {
+						if (scripts[i] === url) {
+							if (callback !== undefined) {
+								callback();
+							}
+							return;
+						}
+					}
+
+					var element = document.createElement('script');
+					element.src = url;
+					element.rel = url;
+					if (callback !== undefined) {
+						addEvent('load', element, callback);
+					}
+					document.getElementsByTagName('HEAD')[0].appendChild(element);
+					scripts.push(url);
+				},
+
+				loadCss: function (url, callback) {
+					for (var i in scripts) {
+						if (scripts[i] === url) {
+							if (callback !== undefined) {
+								callback();
+							}
+							return;
+						}
+					}
+
+					var element = document.createElement('LINK');
+					element.rel = 'stylesheet';
+					element.type = 'text/css';
+					element.href = url;
+					if (callback !== undefined) {
+						addEvent('load', element, callback);
+					}
+					document.getElementsByTagName('HEAD')[0].appendChild(element);
+					css.push(url);
 				}
-				document.getElementsByTagName('HEAD')[0].appendChild(element);
-			}
+			};
 		};
 
 
 		/**
-		 * Object with public methods and properties.
+		 * Return public methods and properties of widgets.
 		 */
 		var publicObject = {
 			widgetBaseUrl: 'widgets',
@@ -85,8 +113,6 @@
 					widgets[name] = null;
 					insertInDOM = true;
 				}
-
-				var m = scriptElement.addEventListener || scriptElement.attachEvent;
 
 				addEvent('load', scriptElement, (function(publicObject, name, element) {
 					return function() {
@@ -119,7 +145,7 @@
 				}
 			},
 
-			utils: (function(utils) { return utils; })(utils)
+			utils: getUtils()
 		};
 
 		// Assign options properties
