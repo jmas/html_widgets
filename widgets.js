@@ -158,7 +158,7 @@
 
 	// Run
 	window.widgets = getWidgets({
-		widgetBaseUrl: 'http://jmas.github.io/html_widgets/widgets'
+//		widgetBaseUrl: 'http://jmas.github.io/html_widgets/widgets'
 	});
 	window.widgets.run();
 

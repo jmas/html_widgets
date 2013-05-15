@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Map widget examples &mdash; Widget.js</title>
+
+		<style>
+			.vcard {
+				background-color:#fefefe;
+				border:1px solid #eee;
+				border-radius:5px;
+				padding:15px 25px;
+				margin:25px 0;
+			}
+
+			.vcard .geo {
+				height:300px;
+			}
+		</style>
+	</head>
+	<body> <!-- data-map-api-key="123" -->
+
+		<p><a href="index.html">&larr; Back Demos Index</a></p>
+
+		<div class="vcard">
+		    <h1 class="fn org">Яндекс</h1>
+		    <dl>
+			<dt>Адрес:</dt>
+			<dd class="adr">
+			    <span class="postal-code">111033</span>,
+			    <span class="locality">Москва</span>,
+			    <span class="street-address">
+				ул. Самокатная, дом 1
+			    </span>
+			</dd>
+		    <dl>
+		    <div id="map1" class="geo" data-ext="map">
+			<abbr class="latitude" title="37.42285760">
+			    N 55° 75.82
+			</abbr>
+			<abbr class="longitude" title="-122.08506470">
+			    W 37° 67.86
+			</abbr>
+		    </div>
+		</div>
+
+		<div class="vcard">
+		    <h1 class="fn org">Яндекс</h1>
+		    <dl>
+			<dt>Адрес:</dt>
+			<dd class="adr">
+			    <span class="postal-code">111033</span>,
+			    <span class="locality">Москва</span>,
+			    <span class="street-address">
+				ул. Самокатная, дом 1
+			    </span>
+			</dd>
+		    <dl>
+		    <div id="map2" class="geo" data-ext="map">
+			<abbr class="latitude" title="55.7582">
+			    N 55° 75.82
+			</abbr>
+			<abbr class="longitude" title="37.6786">
+			    W 37° 67.86
+			</abbr>
+		    </div>
+		</div>
+
+		<script src="widgets.js"></script>
+	</body>
+</html>

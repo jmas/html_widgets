@@ -7,7 +7,7 @@
 
 	var elements = [],
 	    apiKey = document.getElementsByTagName('body')[0].getAttribute('data-map-api-key');
-
+	
 	window.widgets.add('map', function() {
 		elements.push(this);
 	});
@@ -27,6 +27,6 @@
 		}
 	};
 
-	window.widgets.utils.loadScript('https://maps.googleapis.com/maps/api/js?sensor=true&callback=mapInit');
+	window.widgets.utils.loadScript('https://maps.googleapis.com/maps/api/js?'+(apiKey !== null ? 'key=' + apiKey + '&': '') +'sensor=true&callback=mapInit');
 
 })();
