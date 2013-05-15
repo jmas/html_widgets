@@ -4,7 +4,6 @@
 	 * Base widgets factory.
 	 */
 	var getWidgets = function(options) {
-		var widgets = {};
 
 		/**
 		 * Get all elements with attribute.
@@ -158,7 +157,7 @@
 
 	// Run
 	window.widgets = getWidgets({
-//		widgetBaseUrl: 'http://jmas.github.io/html_widgets/widgets'
+		widgetBaseUrl: 'http://jmas.github.io/html_widgets/widgets'
 	});
 	window.widgets.run();
 
